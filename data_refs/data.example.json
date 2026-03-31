@@ -1,0 +1,21 @@
+{
+    "SELLER_NAME": "Facunda Garcia Moreno",
+    "SELLER_ADDRESS_STREET": "Calle Rosario 87",
+    "SELLER_CP_PLACE": "CP:02601 Inventado (Albacete)",
+    "SELLER_ID": "12345678A",
+
+    "CUSTOMER_NAME": "Enrique José González Martínez",
+    "CUSTOMER_ADDRESS_STREET": "Calle Cudeiro 10",
+    "CUSTOMER_CP_PLACE": "CP:02601 Inventado (Albacete)",
+    "CUSTOMER_ID": "12345670B",
+    "CUSTOMER_ALIAS" : "HomerSimpsons",
+
+    "INVOICE_CONCEPT" : "THE SUPER CONCEPT",
+    "INVOICE_BASE": 225,
+    "INVOICE_IVA": 21,
+    "INVOICE_IVA_PERCENTAGE": 0.21,
+    "INVOICE_RETENTION": -19,
+    "INVOICE_RETENTION_PERCENTAGE": -0.19,
+    "INVOICE_YEAR" : 2026,
+    "PAY_METHOD" : "Forma de pago transferencia banco: ESXX XXXX XXXX XXXX XXXX XXXX"
+}
