@@ -10,3 +10,7 @@ wheels/
 .venv
 *rd*.json
 invoices/*invoice*
+
+# keep example snapshot (do not ignore this file)
+!invoice_example.png
+!invoices/invoice_example.png

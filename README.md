@@ -75,7 +75,22 @@ This runs generation for June through December (months 6..12).
 - `template/` - Jinja HTML template(s)
 - `invoices/` - generated output PDFs
 
-## 🛠️ Customization
+## 🖼️ Example generated PDF preview
+
+A typical generated invoice contains:
+
+- header with customer name and invoice number
+- invoice issue date and period
+- concept details (for example: `HomerSimpsons` service description)
+- base amount, IVA (tax), retention, total amount
+- footer with company/contact details
+
+Your project includes `invoices/HomerSimpsons.pdf` and `invoice_example.png`.
+
+![Invoice example](invoices/invoice_example.png)
+
+
+## 🧑‍🎨 Customization
 
 - Edit data in `data_refs/data.example.json`
 - Edit templates in `template/spanish.jinja.html`
