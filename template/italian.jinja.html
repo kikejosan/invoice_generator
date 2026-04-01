@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<style>
+    @page {
+        size: A4;
+        margin: 40px;
+    }
+
+    body {
+        font-family: "Times New Roman", serif;
+        font-size: 12px;
+        color: #000;
+    }
+
+    .top-left {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+    }
+
+    .top-right {
+        position: absolute;
+        top: 120px;
+        right: 40px;
+        text-align: right;
+    }
+
+    .invoice-info {
+        position: absolute;
+        top: 140px;
+        left: 40px;
+    }
+
+    .table-container {
+        width: 85%;
+        margin: 250px auto 0 auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    col.concept {
+        width: 60%;
+    }
+
+    col.amount {
+        width: 40%;
+    }
+
+    .concept-row {
+        height: 120px;
+    }
+
+    .totals {
+        width: 40%;
+        margin-left: 60%;
+        margin-top: -1px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="top-left">
+    {{ SELLER_NAME }}<br>
+    {{ SELLER_ADDRESS_STREET }}<br>
+    {{ SELLER_CP_PLACE }}<br>
+    {{ SELLER_ID }}
+</div>
+
+<div class="invoice-info">
+    Fattura n. {{ INVOICE_NUMBER }}<br><br>
+    Data: {{ INVOICE_DATE }}
+</div>
+
+<div class="top-right">
+    {{ CUSTOMER_NAME }}<br>
+    {{ CUSTOMER_ADDRESS_STREET }}<br>
+    {{ CUSTOMER_CP_PLACE }}<br>
+    {{ CUSTOMER_ID }}
+</div>
+
+<div class="table-container">
+
+    <table>
+        <colgroup>
+            <col class="concept">
+            <col class="amount">
+        </colgroup>
+
+        <tr>
+            <th>DESCRIZIONE</th>
+            <th>IMPORTO</th>
+        </tr>
+
+        <tr class="concept-row">
+            <td>{{ INVOICE_CONCEPT_ENRICHED }}</td>
+            <td>{{ INVOICE_BASE }} €</td>
+        </tr>
+    </table>
+
+    <table class="totals">
+        <tr>
+            <td>BASE</td>
+            <td>{{ INVOICE_BASE }} €</td>
+        </tr>
+        <tr>
+            <td>IVA {{ INVOICE_IVA }}%</td>
+            <td>{{ INVOICE_IVA_QUANTITY }} €</td>
+        </tr>
+        <tr>
+            <td>RITENUTA {{ INVOICE_RETENTION }}%</td>
+            <td>{{ INVOICE_RETENTION_QUANTITY }} €</td>
+        </tr>
+        <tr>
+            <td><strong>TOTALE</strong></td>
+            <td><strong>{{ INVOICE_TOTAL_QUANTITY }} €</strong></td>
+        </tr>
+    </table>
+    <br><br>
+    <div>{{ PAY_METHOD }}</div>
+
+</div>
+
+</body>
+</html>
