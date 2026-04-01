@@ -48,18 +48,23 @@ def main():
         last_day_month = date_month.replace(
             day=calendar.monthrange(date_month.year, date_month.month)[1]
         )
+        base_value = float(data_ref["INVOICE_BASE"])
+        iva_quantity = base_value * float(data_ref["INVOICE_IVA_PERCENTAGE"])
+        retention_quantity = base_value * float(data_ref["INVOICE_RETENTION_PERCENTAGE"])
+        total_quantity = base_value + iva_quantity + retention_quantity
+
         data_invoices.append(
             {
+                **data_ref,
                 "INVOICE_NUMBER": i+1,
                 "INVOICE_DATE": date_month.strftime("%d/%m/%Y"),
                 "INVOICE_LAST_DATE" : last_day_month,
                 "INVOICE_CONCEPT_ENRICHED": f"{data_ref['INVOICE_CONCEPT']}<br>{date_month.strftime('%d/%m/%Y')} - {last_day_month.strftime('%d/%m/%Y')}",
 
-                
-                "INVOICE_IVA_QUANTITY": data_ref["INVOICE_IVA_PERCENTAGE"]*data_ref["INVOICE_BASE"],
-                "INVOICE_RETENTION_QUANTITY": data_ref["INVOICE_RETENTION_PERCENTAGE"]*data_ref["INVOICE_BASE"],
-                "INVOICE_TOTAL_QUANTITY": data_ref["INVOICE_BASE"]+data_ref["INVOICE_IVA_PERCENTAGE"]*data_ref["INVOICE_BASE"] + data_ref["INVOICE_RETENTION_PERCENTAGE"]*data_ref["INVOICE_BASE"],
-                **data_ref
+                "INVOICE_BASE": f"{base_value:.2f}",
+                "INVOICE_IVA_QUANTITY": f"{iva_quantity:.2f}",
+                "INVOICE_RETENTION_QUANTITY": f"{retention_quantity:.2f}",
+                "INVOICE_TOTAL_QUANTITY": f"{total_quantity:.2f}"
             }
         )
 
@@ -70,7 +75,7 @@ def main():
 
 
     for data in data_invoices:
-        html_out = template.render(**data)
+        html_out = template.render(**data)           
 
         output_file = f"invoices/invoice_{data['CUSTOMER_ALIAS']}_{data['INVOICE_LAST_DATE'].strftime('%m%Y')}.pdf"
         HTML(string=html_out).write_pdf(output_file)
